@@ -1,7 +1,9 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'timer_setup_model.dart';
 export 'timer_setup_model.dart';
@@ -29,11 +31,11 @@ class _TimerSetupWidgetState extends State<TimerSetupWidget> {
     _model.heuresTextController ??= TextEditingController();
     _model.heuresFocusNode ??= FocusNode();
 
-    _model.textController2 ??= TextEditingController();
-    _model.textFieldFocusNode1 ??= FocusNode();
+    _model.minutesTextController ??= TextEditingController();
+    _model.minutesFocusNode ??= FocusNode();
 
-    _model.textController3 ??= TextEditingController();
-    _model.textFieldFocusNode2 ??= FocusNode();
+    _model.secondsTextController ??= TextEditingController();
+    _model.secondsFocusNode ??= FocusNode();
   }
 
   @override
@@ -243,6 +245,15 @@ class _TimerSetupWidgetState extends State<TimerSetupWidget> {
                                             .bodyMedium
                                             .fontStyle,
                                       ),
+                                  maxLength: 2,
+                                  maxLengthEnforcement:
+                                      MaxLengthEnforcement.enforced,
+                                  buildCounter: (context,
+                                          {required currentLength,
+                                          required isFocused,
+                                          maxLength}) =>
+                                      null,
+                                  keyboardType: TextInputType.number,
                                   cursorColor:
                                       FlutterFlowTheme.of(context).primaryText,
                                   validator: _model
@@ -254,8 +265,8 @@ class _TimerSetupWidgetState extends State<TimerSetupWidget> {
                             Container(
                               width: MediaQuery.sizeOf(context).width * 0.7,
                               child: TextFormField(
-                                controller: _model.textController2,
-                                focusNode: _model.textFieldFocusNode1,
+                                controller: _model.minutesTextController,
+                                focusNode: _model.minutesFocusNode,
                                 autofocus: false,
                                 obscureText: false,
                                 decoration: InputDecoration(
@@ -355,17 +366,25 @@ class _TimerSetupWidgetState extends State<TimerSetupWidget> {
                                           .bodyMedium
                                           .fontStyle,
                                     ),
+                                maxLength: 2,
+                                maxLengthEnforcement:
+                                    MaxLengthEnforcement.enforced,
+                                buildCounter: (context,
+                                        {required currentLength,
+                                        required isFocused,
+                                        maxLength}) =>
+                                    null,
                                 cursorColor:
                                     FlutterFlowTheme.of(context).primaryText,
-                                validator: _model.textController2Validator
+                                validator: _model.minutesTextControllerValidator
                                     .asValidator(context),
                               ),
                             ),
                             Container(
                               width: MediaQuery.sizeOf(context).width * 0.7,
                               child: TextFormField(
-                                controller: _model.textController3,
-                                focusNode: _model.textFieldFocusNode2,
+                                controller: _model.secondsTextController,
+                                focusNode: _model.secondsFocusNode,
                                 autofocus: false,
                                 obscureText: false,
                                 decoration: InputDecoration(
@@ -465,15 +484,24 @@ class _TimerSetupWidgetState extends State<TimerSetupWidget> {
                                           .bodyMedium
                                           .fontStyle,
                                     ),
+                                maxLength: 2,
+                                maxLengthEnforcement:
+                                    MaxLengthEnforcement.enforced,
+                                buildCounter: (context,
+                                        {required currentLength,
+                                        required isFocused,
+                                        maxLength}) =>
+                                    null,
+                                keyboardType: TextInputType.number,
                                 cursorColor:
                                     FlutterFlowTheme.of(context).primaryText,
-                                validator: _model.textController3Validator
+                                validator: _model.secondsTextControllerValidator
                                     .asValidator(context),
                               ),
                             ),
                             FFButtonWidget(
-                              onPressed: () {
-                                print('Button_run pressed ...');
+                              onPressed: () async {
+                                context.pushNamed(TimerRunWidget.routeName);
                               },
                               text: 'Démarrer',
                               options: FFButtonOptions(
