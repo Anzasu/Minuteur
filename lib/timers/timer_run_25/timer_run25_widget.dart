@@ -6,29 +6,28 @@ import '/index.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'timer_run_model.dart';
-export 'timer_run_model.dart';
+import 'timer_run25_model.dart';
+export 'timer_run25_model.dart';
 
-class TimerRunWidget extends StatefulWidget {
-  const TimerRunWidget({super.key});
+class TimerRun25Widget extends StatefulWidget {
+  const TimerRun25Widget({super.key});
 
-  static String routeName = 'TimerRun';
-  static String routePath = '/timerRun';
+  static String routeName = 'TimerRun_25';
+  static String routePath = '/timerRun25';
 
   @override
-  State<TimerRunWidget> createState() => _TimerRunWidgetState();
+  State<TimerRun25Widget> createState() => _TimerRun25WidgetState();
 }
 
-class _TimerRunWidgetState extends State<TimerRunWidget> {
-  late TimerRunModel _model;
+class _TimerRun25WidgetState extends State<TimerRun25Widget> {
+  late TimerRun25Model _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => TimerRunModel());
+    _model = createModel(context, () => TimerRun25Model());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -42,8 +41,6 @@ class _TimerRunWidgetState extends State<TimerRunWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -56,16 +53,12 @@ class _TimerRunWidgetState extends State<TimerRunWidget> {
           top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                width: MediaQuery.sizeOf(context).width * 1.0,
-                height: MediaQuery.sizeOf(context).height * 0.15,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
-                ),
-                child: Align(
-                  alignment: AlignmentDirectional(0.0, 0.0),
+              Align(
+                alignment: AlignmentDirectional(0.0, 0.0),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 50.0),
                   child: Text(
                     'Le minuteur est en cours...',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -95,6 +88,7 @@ class _TimerRunWidgetState extends State<TimerRunWidget> {
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Container(
                       width: MediaQuery.sizeOf(context).width * 1.0,
@@ -119,7 +113,7 @@ class _TimerRunWidgetState extends State<TimerRunWidget> {
                     Align(
                       alignment: AlignmentDirectional(0.0, 0.0),
                       child: FlutterFlowTimer(
-                        initialTime: FFAppState().timerTotal,
+                        initialTime: _model.timerInitialTimeMs,
                         getDisplayTime: (value) =>
                             StopWatchTimer.getDisplayTime(value,
                                 milliSecond: false),
@@ -141,6 +135,7 @@ class _TimerRunWidgetState extends State<TimerRunWidget> {
                                         .headlineSmall
                                         .fontStyle,
                                   ),
+                                  fontSize: 45.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FlutterFlowTheme.of(context)
                                       .headlineSmall

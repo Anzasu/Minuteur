@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '/main.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 import '/index.dart';
@@ -33,22 +34,84 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
-      errorBuilder: (context, state) => TimerRunWidget(),
+      errorBuilder: (context, state) => TimerRun10Widget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => TimerRunWidget(),
+          builder: (context, _) => TimerRun10Widget(),
         ),
         FFRoute(
-          name: TimerRunWidget.routeName,
-          path: TimerRunWidget.routePath,
-          builder: (context, params) => TimerRunWidget(),
+          name: TimerRun10Widget.routeName,
+          path: TimerRun10Widget.routePath,
+          builder: (context, params) => TimerRun10Widget(),
         ),
         FFRoute(
           name: TimerSetupWidget.routeName,
           path: TimerSetupWidget.routePath,
-          builder: (context, params) => TimerSetupWidget(),
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'TimerSetup')
+              : TimerSetupWidget(),
+        ),
+        FFRoute(
+          name: SettingsWidget.routeName,
+          path: SettingsWidget.routePath,
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'Settings')
+              : NavBarPage(
+                  initialPage: 'Settings',
+                  page: SettingsWidget(),
+                ),
+        ),
+        FFRoute(
+          name: TimerRun15Widget.routeName,
+          path: TimerRun15Widget.routePath,
+          builder: (context, params) => TimerRun15Widget(),
+        ),
+        FFRoute(
+          name: TimerRun20Widget.routeName,
+          path: TimerRun20Widget.routePath,
+          builder: (context, params) => TimerRun20Widget(),
+        ),
+        FFRoute(
+          name: TimerRun25Widget.routeName,
+          path: TimerRun25Widget.routePath,
+          builder: (context, params) => TimerRun25Widget(),
+        ),
+        FFRoute(
+          name: TimerRun30Widget.routeName,
+          path: TimerRun30Widget.routePath,
+          builder: (context, params) => TimerRun30Widget(),
+        ),
+        FFRoute(
+          name: TimerRun35Widget.routeName,
+          path: TimerRun35Widget.routePath,
+          builder: (context, params) => TimerRun35Widget(),
+        ),
+        FFRoute(
+          name: TimerRun40Widget.routeName,
+          path: TimerRun40Widget.routePath,
+          builder: (context, params) => TimerRun40Widget(),
+        ),
+        FFRoute(
+          name: TimerRun45Widget.routeName,
+          path: TimerRun45Widget.routePath,
+          builder: (context, params) => TimerRun45Widget(),
+        ),
+        FFRoute(
+          name: TimerRun50Widget.routeName,
+          path: TimerRun50Widget.routePath,
+          builder: (context, params) => TimerRun50Widget(),
+        ),
+        FFRoute(
+          name: TimerRun55Widget.routeName,
+          path: TimerRun55Widget.routePath,
+          builder: (context, params) => TimerRun55Widget(),
+        ),
+        FFRoute(
+          name: TimerRun60Widget.routeName,
+          path: TimerRun60Widget.routePath,
+          builder: (context, params) => TimerRun60Widget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
